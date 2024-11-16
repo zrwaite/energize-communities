@@ -5,6 +5,7 @@ import { ThreeEvent, useLoader } from '@react-three/fiber'
 import { models } from '../../data/models'
 import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
+import { City } from '../../types/city'
 
 export const Model = ({
 	position,
@@ -21,7 +22,7 @@ export const Model = ({
 	onPointerOver?: (e: ThreeEvent<PointerEvent>) => void
 	onPointerOut?: (e: ThreeEvent<PointerEvent>) => void
 }) => {
-	const { scene } = useGLTF(modelPath)
+	const { scene } = useGLTF(`${process.env.PUBLIC_URL}${modelPath}`)
 	return (
 		<Clone
 			object={scene}
@@ -82,8 +83,8 @@ export const EnergyModel = ({ model }: { model: EnergyModel3D }) => {
 	)
 }
 
-export const Scene = ({ energyModels }: { energyModels: EnergyModel3D[] }) => {
-	const cityTextureUrl = '/cities/sackville.png'
+export const Scene = ({ energyModels, city }: { energyModels: EnergyModel3D[], city: City }) => {
+	const cityTextureUrl = `${process.env.PUBLIC_URL}${city.imageUrl}`
 	const texture = useLoader(THREE.TextureLoader, cityTextureUrl)
 	return (
 		<>
