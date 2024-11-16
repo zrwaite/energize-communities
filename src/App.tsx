@@ -19,7 +19,11 @@ const App: React.FC = () => {
 				/>
 			)}
 			{state === 'cityView' && !!city && !!cityData && (
-				<CityView city={city} cityData={cityData} setCityData={setCityData} />
+				<CityView 
+					city={city}
+					cityData={cityData}
+					setCityData={setCityData}
+				/>
 			)}
 		</Box>
 	)

@@ -42,7 +42,8 @@ export const sackville: City = {
         [-20, -15],
     ],
     coordinates: [45.897775, -64.368265],
-    imageUrl: '/cities/sackville.png'
+    imageUrl: '/cities/sackville.png',
+	timezone: 'America/Moncton',
 }
 
 export const sackvilleData: CityData = {

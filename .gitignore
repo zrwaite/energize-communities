@@ -24,3 +24,6 @@ yarn-error.log*
 
 # blender files
 blender/*
+
+# environment variables
+.env

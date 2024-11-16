@@ -11,6 +11,7 @@ export type City = {
     positionsGas: EnergyModelPos[]
     coordinates: [number, number]
     imageUrl: string
+    timezone: string
 }
 
 export type CityData = {

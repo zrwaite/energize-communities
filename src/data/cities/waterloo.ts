@@ -37,7 +37,8 @@ export const waterloo: City = {
         [-20, -15],
     ],
     coordinates: [43.46641256681465, -80.52250692905282],
-    imageUrl: '/cities/waterloo.png'
+    imageUrl: '/cities/waterloo.png',
+	timezone: 'America/Toronto',
 }
 
 export const waterlooData: CityData = {
