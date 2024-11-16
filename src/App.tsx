@@ -24,7 +24,7 @@ const App: React.FC = () => {
 			</Box>
 			<Box sx={{ height: '100%', flex: 1 }}>
 				<Canvas camera={{ position: [0, 2, 5] }}>
-					<Scene energyModels={models} />
+					<Scene city={city} energyModels={models} />
 				</Canvas>
 			</Box>
 		</Box>
