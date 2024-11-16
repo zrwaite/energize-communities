@@ -5,26 +5,38 @@ export const models = [{
     name: 'Gas',
     path: '/models/gas.glb',
     scale: 0.06,
+    price: 800000000,
+    displayPrice: '$800 million',
 } as const, {
     name: 'Wind',
     path: '/models/wind.glb',
     scale: 0.08,
+    price: 2000000,
+    displayPrice: '$2 million',
 } as const, {
     name: 'Solar',
     path: '/models/solar.glb',
     scale: 0.08,
+    price: 2000000,
+    displayPrice: '$2 million',
 } as const, {
     name: 'Hydro',
     path: '/models/hydro.glb',
     scale: 0.1,
+    price: 3000000,
+    displayPrice: '$3 million',
 } as const, {
     name: 'Nuclear',
     path: '/models/nuclear.glb',
     scale: 0.1,
+    price: 8000000000,
+    displayPrice: '$8 billion',
 } as const, {
     name: 'Geothermal',
     path: '/models/geo.glb',
     scale: 0.1,
+    price: 4000000,
+    displayPrice: '$4 million',
 } as const] as const;
 
 export const modelTypes = models.map(model => model.name)

@@ -1,7 +1,8 @@
-import { TextField } from "@mui/material"
+import { Box, TextField, Typography } from "@mui/material"
 import { EnergyModelType } from "../types/model"
 import { City, CityData } from "../types/city"
-import { updateCityData } from "../data/models"
+import { models, updateCityData } from "../data/models"
+import { formatNumber } from "../utils/formatting"
 
 export const EnergyNumberField = (props: {
     type: EnergyModelType,
@@ -9,9 +10,11 @@ export const EnergyNumberField = (props: {
     setCityData: (cityData: CityData) => void,
     city: City,
 }) => {
-    return (
+	const model = models.find((m) => m.name === props.type)!
+    
+    return (<Box sx={{ m: 1 }}>
         <TextField
-            label={"Number of " + props.type}
+            label={`${props.type}: ${model.displayPrice} per unit`}
             type="number"
             value={props.cityData[`num${props.type}`]}
             onChange={(e) => props.setCityData(
@@ -22,9 +25,8 @@ export const EnergyNumberField = (props: {
                     shrink: true,
                 },
             }}
-            sx={{
-                m: 1
-            }}
         />
+        <Typography>Cost: ${formatNumber(props.cityData[`num${props.type}`] * model.price)}</Typography>
+    </Box>
     )
 }

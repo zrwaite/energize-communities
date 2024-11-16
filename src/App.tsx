@@ -1,32 +1,26 @@
-import React, { useMemo, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { Scene } from './components/3d/Scene'
+import React, { useState } from 'react'
 import { Box } from '@mui/material'
-import { CityData } from './types/city'
-import { sackville, sackvilleData } from './data/cities/sackville'
-import { generateEnergyModels } from './data/models'
-import { EnergyNumberField } from './components/EnergyNumberField'
+import { City, CityData } from './types/city'
+import { CitySelect } from './CitySelect'
+import { CityView } from './CityView'
 const App: React.FC = () => {
-	const city = sackville
-	const [cityData, setCityData] = useState<CityData>(sackvilleData)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const models = useMemo(() => generateEnergyModels(city, cityData), [cityData])
+	const [city, setCity] = useState<City | null>(null)
+	const [cityData, setCityData] = useState<CityData | null>(null)
+	const [state, setState] = useState<'citySelect' | 'cityView'>('citySelect')
 
 	return (
-		<Box sx={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
-			<Box sx={{ width: 200, height: '100%', p: 2 }}>
-				<EnergyNumberField type="Solar" cityData={cityData} setCityData={setCityData} city={city} />
-				<EnergyNumberField type="Wind" cityData={cityData} setCityData={setCityData} city={city} />
-				<EnergyNumberField type="Gas" cityData={cityData} setCityData={setCityData} city={city} />
-				<EnergyNumberField type="Geothermal" cityData={cityData} setCityData={setCityData} city={city} />
-				<EnergyNumberField type="Hydro" cityData={cityData} setCityData={setCityData} city={city} />
-				<EnergyNumberField type="Nuclear" cityData={cityData} setCityData={setCityData} city={city} />
-			</Box>
-			<Box sx={{ height: '100%', flex: 1 }}>
-				<Canvas camera={{ position: [0, 2, 5] }}>
-					<Scene city={city} energyModels={models} />
-				</Canvas>
-			</Box>
+		<Box sx={{ height: '100%' }}>
+			{state === 'citySelect' && (
+				<CitySelect
+					city={city} 
+					setCity={setCity} 
+					setCityData={setCityData} 
+					next={() => setState('cityView')}
+				/>
+			)}
+			{state === 'cityView' && !!city && !!cityData && (
+				<CityView city={city} cityData={cityData} setCityData={setCityData} />
+			)}
 		</Box>
 	)
 }
