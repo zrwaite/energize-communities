@@ -316,6 +316,7 @@ export const parseDayOfWeatherData = (
 }
 
 export const getAPIWeatherData = async (cityName: string) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const city = Object.values(cities).find(city => city.city.name === cityName)!
 	const now = new Date()
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 1000

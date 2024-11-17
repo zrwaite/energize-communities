@@ -124,6 +124,7 @@ export const SimulationRunning = (props: {
 		} else if (simulationState === 'running') {
 			incrementTime(day, simulationResult)
 		}
+	  // eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, [simulationState])
 
 	return (
