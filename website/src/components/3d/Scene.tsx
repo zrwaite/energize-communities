@@ -116,7 +116,6 @@ const RotatingCamera = () => {
   
 		// Update camera position
 		cameraRef.current.position.set(x, y, z);
-		console.log('Camera position:', x, y, z);
   
 		// Make the camera look at the origin
 		cameraRef.current.lookAt(0, 0, 0);
