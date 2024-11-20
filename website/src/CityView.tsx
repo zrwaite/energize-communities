@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material"
 import { EnergyNumberField } from "./components/EnergyNumberField"
 import { City, CityData } from "./types/city"
-import { Canvas } from "@react-three/fiber"
 import { Scene } from "./components/3d/Scene"
 import { generateEnergyModels } from "./data/models"
 import { useMemo, useState } from "react"
