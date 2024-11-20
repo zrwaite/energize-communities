@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Redirect to index.html while preserving the path
+        const pathname = window.location.pathname;
+        const search = window.location.search;
+        const hash = window.location.hash;
+        window.location.href = `/energize-communities/index.html?redirected=true${search}${hash}`;
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
