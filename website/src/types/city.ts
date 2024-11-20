@@ -10,7 +10,7 @@ export type City = {
     positionsGeothermal: EnergyModelPos[]
     positionsGas: EnergyModelPos[]
     coordinates: [number, number]
-    imageUrl: string
+    modelUrl: string
     timezone: string
 }
 
