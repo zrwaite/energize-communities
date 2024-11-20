@@ -49,7 +49,7 @@ export const CityView = (props: {
 			        )}
                 </Box>
                 <Box sx={{ height: '100%', flex: 1 }}>
-                    <Canvas camera={{ position: [0, 2, 5] }}>
+                    <Canvas camera={{ position: [0, 40, 60] }}>
                         <Scene city={props.city} energyModels={models} />
                     </Canvas>
                 </Box>
