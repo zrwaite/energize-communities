@@ -2,6 +2,7 @@ import { City, CityData } from "../../types/city";
 
 export const waterloo: City = {
     name: 'Waterloo',
+    fullName: 'Waterloo, ON, Canada',
     population: 130000,
     positionsSolar: [
         [-25, 8, 0], [-27, 8, 0],

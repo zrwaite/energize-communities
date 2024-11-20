@@ -5,11 +5,12 @@ import {
 	useGLTF,
 } from '@react-three/drei'
 import { EnergyModel3D } from '../../types/model'
-import { ThreeEvent } from '@react-three/fiber'
+import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import { models } from '../../data/models'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { City } from '../../types/city'
+import { PerspectiveCamera } from 'three'
 
 const TopographicalMap = (props: {
 	city: City
@@ -100,15 +101,47 @@ export const EnergyModel = ({ model }: { model: EnergyModel3D }) => {
 	)
 }
 
+const RotatingCamera = () => {
+	const cameraRef = useRef<PerspectiveCamera | null>(null);
+    const { set } = useThree()
+	useFrame(({ clock }) => {
+	  if (cameraRef.current) {
+		set({ camera: cameraRef.current })
+		const time = clock.getElapsedTime();
+		const radius = 80; // Distance from the origin
+		const speed = 0.1; // Adjust this to control the speed
+		const x = radius * Math.sin(time * speed);
+		const z = radius * Math.cos(time * speed);
+		const y = 40; // Height of the camera
+  
+		// Update camera position
+		cameraRef.current.position.set(x, y, z);
+		console.log('Camera position:', x, y, z);
+  
+		// Make the camera look at the origin
+		cameraRef.current.lookAt(0, 0, 0);
+	  } else {
+		console.error('Camera not found');
+	  }
+	});
+  
+	return <perspectiveCamera ref={cameraRef} position={[0, 40, 60]} />;
+  }
+
 export const Scene = ({
 	energyModels,
 	city,
+	rotating,
 }: {
 	energyModels: EnergyModel3D[]
 	city: City
+	rotating?: boolean
 }) => {
 	return (
-		<>
+		<Canvas
+        	camera={rotating ? undefined : { position: [0, 40, 60] }}
+        >
+			{rotating && <RotatingCamera />}
 			<color attach="background" args={['#87CEEB']} />
 			<ambientLight intensity={0.5} />
 			<color attach="background" args={['#87CEEB']} />
@@ -117,8 +150,8 @@ export const Scene = ({
 			{energyModels.map((model, index) => (
 				<EnergyModel key={index} model={model} />
 			))}
-			<OrbitControls />
-		</>
+			{!rotating && <OrbitControls />}
+		</Canvas>
 	)
 }
 

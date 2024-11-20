@@ -1,31 +1,16 @@
-import React, { useState } from 'react'
-import { Box } from '@mui/material'
-import { City, CityData } from './types/city'
-import { CitySelect } from './CitySelect'
-import { CityView } from './CityView'
-const App: React.FC = () => {
-	const [city, setCity] = useState<City | null>(null)
-	const [cityData, setCityData] = useState<CityData | null>(null)
-	const [state, setState] = useState<'citySelect' | 'cityView'>('citySelect')
+import React from 'react'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { CityPage } from './pages/CityPage'
 
+const App: React.FC = () => {
 	return (
-		<Box sx={{ height: '100%' }}>
-			{state === 'citySelect' && (
-				<CitySelect
-					city={city} 
-					setCity={setCity} 
-					setCityData={setCityData} 
-					next={() => setState('cityView')}
-				/>
-			)}
-			{state === 'cityView' && !!city && !!cityData && (
-				<CityView 
-					city={city}
-					cityData={cityData}
-					setCityData={setCityData}
-				/>
-			)}
-		</Box>
+		<Router>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/city/:citySlug" element={<CityPage />} />
+			</Routes>
+		</Router>
 	)
 }
 

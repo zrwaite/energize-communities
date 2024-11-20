@@ -2,6 +2,7 @@ import { City, CityData } from "../../types/city";
 
 export const hamburg: City = {
     name: 'Hamburg',
+    fullName: 'Hamburg, Germany',
     population: 1946000,
     positionsSolar: [
         [-25, 7, 0], [-27, 7, 0],

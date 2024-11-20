@@ -2,6 +2,7 @@ import { EnergyModelPos } from "./model"
 
 export type City = {
     name: string
+    fullName: string
     population: number
     positionsSolar: EnergyModelPos[]
     positionsWind: EnergyModelPos[]

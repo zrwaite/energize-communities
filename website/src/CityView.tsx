@@ -21,7 +21,7 @@ export const CityView = (props: {
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', flex: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', p: 2, backgroundColor: 'grey'}}>
-                <Typography sx={{ fontSize: 40, fontWeight: 'bold' }}>{props.city.name}</Typography>
+                <Typography sx={{ fontSize: 40, fontWeight: 'bold' }}>{props.city.fullName}</Typography>
                 <Box sx={{ display: 'flex' }}>
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold', ml: 2 }}>Population: {props.city.population}</Typography>
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold', ml: 2 }}></Typography>
@@ -49,9 +49,7 @@ export const CityView = (props: {
 			        )}
                 </Box>
                 <Box sx={{ height: '100%', flex: 1 }}>
-                    <Canvas camera={{ position: [0, 40, 60] }}>
-                        <Scene city={props.city} energyModels={models} />
-                    </Canvas>
+                    <Scene city={props.city} energyModels={models} />
                 </Box>
             </Box>
         </Box>
