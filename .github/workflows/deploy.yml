@@ -41,6 +41,7 @@ jobs:
       - name: Build React app
         env:
           PUBLIC_URL: /${{ github.event.repository.name }}
+          PUBLIC_PATH: /${{ github.event.repository.name }}
         run: npm run build
         working-directory: ./website
 
