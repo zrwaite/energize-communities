@@ -3,6 +3,7 @@ import { getAPIWeatherData, parseDayOfWeatherData, WeatherHourData } from "../..
 import { gs } from "../../styles"
 import { City, CityData } from "../../types/city"
 import { calculateTotalCost } from "../../data/simulation"
+import { Typography } from "@mui/material"
 
 type SimulationResult = {
 	averageDailyEnergyUsed: number
@@ -130,37 +131,37 @@ export const SimulationRunning = (props: {
 	return (
 		<div style={gs.centerCol}>
 			<h1>Day: {day}</h1>
-			{simulationState === 'loading' && <p>Loading Weather Data...</p>}
+			{simulationState === 'loading' && <Typography>Loading Weather Data...</Typography>}
 			{simulationState === 'error' && <div>
-				<p>Error loading weather data</p>
+				<Typography>Error loading weather data</Typography>
 				<button style={gs.largeButton} onClick={() => {
 					setSimulationState('loading')
 				}}>Retry</button>
 			</div>}
-			{simulationState === 'running' && <p>Running...</p>}
+			{simulationState === 'running' && <Typography>Running...</Typography>}
 			{simulationState === 'fail' && simulationResult.state === 'fail' && <div style={{
 				...gs.centerCol,
 				alignItems: 'flex-start',
-				padding: '20px'
+				padding: '10px'
 			}}>
-				<h3 className='m0 bold' style={{ color: 'red' }}>Your grid failed!</h3>
-				<p className='m0 bold'>Your energy sources could not meet the peak demand!</p>
-				<p className='m0 bold'>The energy available failed to meet the energy demand@</p>
-				<p className='m0 bold'>Your simulation failed on Day {day} at {simulationResult.failureHour}:00</p>
+				<h3  style={{ color: 'red' }}>Your grid failed!</h3>
+				<Typography sx={{ fontWeight: 'bold' }}>Your energy sources could not meet the peak demand!</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>The energy available failed to meet the energy demand@</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>Your simulation failed on Day {day} at {simulationResult.failureHour}:00</Typography>
 
-				<p className='m0 bold'>Energy Demand @ Failure:</p>
-				<p className='m0'>{Math.round(simulationResult.failureEnergyDemand)} kWh</p>
-				<p className='m0 bold'>Energy Available @ Failure:</p>
-				<p className='m0'>{Math.round(simulationResult.failureEnergyAvailable)} kWh</p>
+				<Typography sx={{ fontWeight: 'bold' }}>Energy Demand @ Failure:</Typography>
+				<Typography>{Math.round(simulationResult.failureEnergyDemand)} kWh</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>Energy Available @ Failure:</Typography>
+				<Typography>{Math.round(simulationResult.failureEnergyAvailable)} kWh</Typography>
 
-				<p className='m0 bold'>Average Daily Energy Used:</p>
-				<p className='m0'>{Math.round(simulationResult.averageDailyEnergyUsed)} kWh</p>
-				<p className='m0 bold'>Average Daily Peak Energy Used (Hour):</p>
-				<p className='m0'>{Math.round(simulationResult.averagePeakEnergyUsed)} kWh</p>
-				{/* <p className='m0 bold'>Average Percentage Renewables Capacity Used Per Day:</p>
-				<p className='m0'>{Math.round(simulationResult.averagePercentageRenewablesUsed * 10)/10}%</p>
-				<p className='m0 bold'>Average Percentage Non-Renewables Capacity Used Per Day:</p>
-				<p className='m0'>{Math.round(simulationResult.averagePercentageNonRenewablesUsed * 10)/10}%</p> */}
+				<Typography sx={{ fontWeight: 'bold' }}>Average Daily Energy Used:</Typography>
+				<Typography>{Math.round(simulationResult.averageDailyEnergyUsed)} kWh</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>Average Daily Peak Energy Used (Hour):</Typography>
+				<Typography>{Math.round(simulationResult.averagePeakEnergyUsed)} kWh</Typography>
+				{/* <Typography >Average Percentage Renewables Capacity Used Per Day:</Typography>
+				<Typography>{Math.round(simulationResult.averagePercentageRenewablesUsed * 10)/10}%</Typography>
+				<Typography >Average Percentage Non-Renewables Capacity Used Per Day:</Typography>
+				<Typography>{Math.round(simulationResult.averagePercentageNonRenewablesUsed * 10)/10}%</Typography> */}
 				
 				<button style={gs.largeButton} onClick={() => {
 					// props.setSimulationData({
@@ -173,25 +174,25 @@ export const SimulationRunning = (props: {
 			{simulationState === 'success' && simulationResult.state === 'success' && <div style={{
 				...gs.centerCol,
 				alignItems: 'flex-start',
-				padding: '20px',
+				padding: '10px',
 			}}>
-				<p className='m0 bold'>Simulation complete!</p>
-				<h3 className='m0 bold' style={{ color: 'green' }}>Your grid succeeded!</h3>
-				<p className='m0 bold'>But could your budget be reduced? Cost per capita:</p>
-				<p className='m0 bold'>${Math.round(calculateTotalCost(props.cityData) / props.city.population)}</p>
+				<Typography sx={{ fontWeight: 'bold' }}>Simulation complete!</Typography>
+				<h3  style={{ color: 'green' }}>Your grid succeeded!</h3>
+				<Typography sx={{ fontWeight: 'bold' }}>But could your budget be reduced? Cost per capita:</Typography>
+				<Typography >${Math.round(calculateTotalCost(props.cityData) / props.city.population)}</Typography>
 				<br/>
-				<p className='m0 bold'>Average Daily Energy Used:</p>
-				<p className='m0'>{Math.round(simulationResult.averageDailyEnergyUsed)} kWh</p>
-				<p className='m0 bold'>Average Daily Peak Energy Used (Hour):</p>
-				<p className='m0'>{Math.round(simulationResult.averagePeakEnergyUsed)} kWh</p>
-				{/* <p className='m0 bold'>Average Percentage Renewables Capacity Used Per Day:</p>
-				<p className='m0'>{Math.round(simulationResult.averagePercentageRenewablesUsed * 10)/10}%</p>
-				<p className='m0 bold'>Average Percentage Non-Renewables Capacity Used Per Day:</p>
-				<p className='m0'>{Math.round(simulationResult.averagePercentageNonRenewablesUsed * 10)/10}%</p> */}
-				<p className='m0 bold'>Peak Daily Energy Used:</p>
-				<p className='m0'>{simulationResult.peakDailyEnergyUsed} kWh</p>
-				<p className='m0 bold'>Peak Day:</p>
-				<p className='m0'>{simulationResult.peakDay}</p>
+				<Typography sx={{ fontWeight: 'bold' }}>Average Daily Energy Used:</Typography>
+				<Typography>{Math.round(simulationResult.averageDailyEnergyUsed)} kWh</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>Average Daily Peak Energy Used (Hour):</Typography>
+				<Typography>{Math.round(simulationResult.averagePeakEnergyUsed)} kWh</Typography>
+				{/* <Typography >Average Percentage Renewables Capacity Used Per Day:</Typography>
+				<Typography>{Math.round(simulationResult.averagePercentageRenewablesUsed * 10)/10}%</Typography>
+				<Typography >Average Percentage Non-Renewables Capacity Used Per Day:</Typography>
+				<Typography>{Math.round(simulationResult.averagePercentageNonRenewablesUsed * 10)/10}%</Typography> */}
+				<Typography sx={{ fontWeight: 'bold' }}>Peak Daily Energy Used:</Typography>
+				<Typography>{simulationResult.peakDailyEnergyUsed} kWh</Typography>
+				<Typography sx={{ fontWeight: 'bold' }}>Peak Day:</Typography>
+				<Typography>{simulationResult.peakDay}</Typography>
 
 				<button style={gs.largeButton} onClick={() => {
 					// props.setSimulationData({
