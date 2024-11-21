@@ -50,7 +50,7 @@ export const sackville: City = {
 export const sackvilleData: CityData = {
     numSolar: 2,
     numWind: 1,
-    numHydro: 1,
+    numHydro: 2,
     numNuclear: 0,
     numGeothermal: 1,
     numGas: 1,

@@ -44,7 +44,7 @@ export const waterloo: City = {
 
 export const waterlooData: CityData = {
     numSolar: 2,
-    numWind: 1,
+    numWind: 2,
     numHydro: 1,
     numNuclear: 0,
     numGeothermal: 1,

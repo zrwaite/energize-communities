@@ -1,17 +1,15 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material'
-import { City, CityData } from './types/city'
-import { cities } from './data/cities'
+import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material'
+import { City } from '../types/city'
+import { cities } from '../data/cities'
+import { useNavigate } from 'react-router-dom'
 
 export const CitySelect = (props: {
 	city: City | null
-	setCity: (city: City) => void
-	setCityData: (cityData: CityData) => void
-	next: () => void
 }) => {
+	const navigate = useNavigate();
+
     const handleChange = (event: SelectChangeEvent) => {
-        const city = Object.values(cities).find((city) => city.city.name === event.target.value)!
-        props.setCity(city.city)
-        props.setCityData(city.data)
+		navigate('/city/' + event.target.value.toLowerCase());
     };
 	return (
 		<Box
@@ -40,7 +38,6 @@ export const CitySelect = (props: {
                     ))}
 				</Select>
 			</FormControl>
-            <Button onClick={props.next} disabled={!props.city}>Next</Button>
 		</Box>
 	)
 }

@@ -44,9 +44,9 @@ export const hamburg: City = {
 
 export const hamburgData: CityData = {
     numSolar: 2,
-    numWind: 1,
+    numWind: 2,
     numHydro: 1,
     numNuclear: 0,
     numGeothermal: 1,
-    numGas: 1,
+    numGas: 2,
 } 
